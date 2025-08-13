@@ -1,0 +1,130 @@
+.login {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    background: #f8f9fa;
+}
+
+.bg__img {
+    display: none;
+}
+
+.container__form__login {
+    background-color: #ffffff;
+    width: 100%;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    width: 160px;
+    height: auto;
+    margin-bottom: 2rem;
+}
+
+.container__form {
+    width: 100%;
+    max-width: 400px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.txt__welcome {
+    font-size: 1.75rem;
+    color: #130f26;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.form__login {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.input__line {
+    width: 100%;
+    padding: 0.875rem;
+    border: 1px solid #bab9be;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.terms {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.terms label {
+    font-size: 0.875rem;
+    color: #666666;
+    line-height: 1.4;
+}
+
+.button {
+    background: #19a8e4 !important;
+    border: none !important;
+    font-size: 1rem;
+    border-radius: 8px !important;
+}
+
+.txt__create {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 0.875rem;
+    color: #909090;
+}
+
+.link__group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.error__message {
+    color: #ff4d4f;
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+}
+.captcha {
+    display: flex;
+    justify-content: center;
+}
+.link {
+    color: var(--primary-color);
+    cursor: pointer;
+}
+@media (min-width: 768px) {
+    .login {
+        flex-direction: row;
+    }
+
+    .bg__img {
+        display: block;
+        width: 50%;
+        height: 100vh;
+        object-fit: cover;
+    }
+
+    .container__form__login {
+        width: 50%;
+        padding: 3rem;
+        justify-content: center;
+    }
+
+    .txt__welcome {
+        font-size: 2rem;
+        text-align: left;
+    }
+
+    .link__group {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}

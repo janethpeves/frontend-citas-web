@@ -1,0 +1,21 @@
+.MainContainer {
+	background-color: rgb(251, 248, 247);
+	width: 100%;
+	border-top-left-radius: 40px;
+	border-bottom-left-radius: 40px;
+	color: black;
+	padding: 30px 60px;
+	display: flex;
+	flex-direction: column;
+}
+
+.bg__container {
+	background-color: rgba(25, 168, 228, 1);
+	width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+	.MainContainer {
+		padding: 8vh 15px 0px;
+	}
+}

@@ -1,0 +1,69 @@
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  width: 450px;
+}
+
+.cancelButton,
+.continueButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 30px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cancelButton {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+  background-color: white;
+  color: #1b9ad1;
+  border: 1px solid #1b9ad1;
+}
+
+.continueButton {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  background-color: #1b9ad1;
+  color: white;
+}
+
+.cancelButton:hover {
+  background-color: #e6f7ff;
+}
+
+.continueButton:hover {
+  background-color: #137ba1;
+}
+
+.icon {
+  margin-left: 5px;
+}
+
+@media (max-width: 768px) {
+  .buttonContainer {
+    width: 100%;
+    justify-content: space-between;
+    padding: 0 15px;
+  }
+
+  .cancelButton,
+  .continueButton {
+    font-size: 0;
+    padding: 12px;
+    border-radius: 5px !important;
+    min-width: 40px;
+  }
+
+  .cancelButton {
+    border: 1px solid #1b9ad1;
+  }
+
+  .icon {
+    font-size: 16px;
+    margin-left: 0;
+  }
+}

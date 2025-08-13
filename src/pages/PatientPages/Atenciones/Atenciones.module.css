@@ -1,0 +1,53 @@
+.header {
+	display: flex;
+	gap: 15px;
+	padding-top: 45px;
+}
+
+.title > label {
+	font-size: 22px;
+	font-weight: 600;
+	line-height: 26.63px;
+	text-align: left;
+	color: #130f26;
+}
+.title > p {
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 16.94px;
+	text-align: left;
+}
+.confirmed {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 85px;
+	height: 25px;
+	background-color: #4caf50;
+	border-radius: 12.5px;
+}
+.confirmed > p {
+	font-family: "Inter";
+	font-size: 12px;
+	font-weight: 500;
+	line-height: 14.52px;
+	text-align: left;
+	color: #ffffff;
+}
+.pending {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 85px;
+	height: 25px;
+	background-color: #ff4e4e;
+	border-radius: 12.5px;
+}
+.pending > p {
+	font-family: "Inter";
+	font-size: 12px;
+	font-weight: 500;
+	line-height: 14.52px;
+	text-align: left;
+	color: #ffffff;
+}

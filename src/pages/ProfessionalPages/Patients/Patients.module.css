@@ -1,0 +1,39 @@
+.header {
+	display: flex;
+	gap: 15px;
+	padding-top: 45px;
+}
+
+.title>label {
+	font-size: 22px;
+	font-weight: 600;
+	line-height: 26.63px;
+	text-align: left;
+	color: #130f26;
+}
+
+.title>p {
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 16.94px;
+	text-align: left;
+}
+
+.search {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+.form {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.formGroup {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}

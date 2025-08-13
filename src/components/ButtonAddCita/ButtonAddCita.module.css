@@ -1,0 +1,12 @@
+.button__cita {
+  max-height: 39px;
+  white-space: nowrap;
+  min-width: fit-content;
+}
+
+@media (max-width: 768px) {
+  .button__cita {
+    width: 100%;
+    margin-top: 0.5rem;
+  }
+}

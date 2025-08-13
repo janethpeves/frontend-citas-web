@@ -1,0 +1,193 @@
+.stepWizard {
+	width: 100%;
+	max-width: 1024px;
+	margin: 0 auto;
+	padding: 1.5rem;
+}
+
+.stepWizardList {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0;
+	margin: 0;
+	position: relative;
+	list-style: none;
+}
+
+.stepWizardList::before {
+	content: '';
+	position: absolute;
+	top: 50%;
+	left: 0;
+	right: 0;
+	height: 2px;
+	background: #e0e0e0;
+	transform: translateY(-50%);
+	transition: background-color 0.3s ease;
+	z-index: 1;
+}
+
+.stepWizardItem {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	position: relative;
+	z-index: 2;
+	flex: 1;
+	min-width: 0;
+}
+
+.progressCount {
+	width: 40px;
+	height: 40px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+	font-size: 1rem;
+	font-weight: 600;
+	background: white;
+	border: 2px solid #e0e0e0;
+	color: #666;
+	position: relative;
+	transition: all 0.3s ease;
+	cursor: pointer;
+}
+
+.progressCount::before {
+	content: "";
+	position: absolute;
+	width: 8px;
+	height: 16px;
+	border-right: 2px solid white;
+	border-bottom: 2px solid white;
+	transform: rotate(45deg) scale(0);
+	transition: transform 0.3s ease;
+	top: 8px;
+}
+
+.stepWizardItem.completed .progressCount {
+	background: #19A8E4;
+	border-color: #19A8E4;
+	color: transparent;
+}
+
+.stepWizardItem.completed .progressCount::before {
+	transform: rotate(45deg) scale(1);
+}
+
+.stepWizardItem.active .progressCount {
+	background: white;
+	border-color: #19A8E4;
+	color: #19A8E4;
+	box-shadow: 0 0 0 4px rgba(25, 168, 228, 0.1);
+}
+
+.stepWizardItem:not(.completed):not(.active) .progressCount:hover {
+	background: #f8f9fa;
+	border-color: #dee2e6;
+}
+
+.progressLabel {
+	margin-top: 0.75rem;
+	font-size: 0.875rem;
+	color: #666;
+	text-align: center;
+	transition: all 0.3s ease;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	max-width: 120px;
+	opacity: 0;
+	transform: translateY(10px);
+}
+
+.stepWizardItem.active .progressLabel,
+.stepWizardItem.completed .progressLabel {
+	opacity: 1;
+	transform: translateY(0);
+	color: #19A8E4;
+}
+
+.stepWizardItem.completed+.stepWizardItem.completed::before,
+.stepWizardItem.completed+.stepWizardItem.active::before {
+	background: #19A8E4;
+}
+
+@media (max-width: 768px) {
+	.stepWizard {
+		padding: 1rem 0.5rem;
+	}
+
+	.progressCount {
+		width: 32px;
+		height: 32px;
+		font-size: 0.875rem;
+	}
+
+	.progressLabel {
+		font-size: 0.75rem;
+		max-width: 80px;
+	}
+
+	.stepWizardList::before {
+		height: 1px;
+	}
+}
+
+@media (max-width: 480px) {
+	.progressCount {
+		width: 28px;
+		height: 28px;
+		font-size: 0.75rem;
+	}
+
+	.progressLabel {
+		font-size: 0.675rem;
+		max-width: 60px;
+	}
+}
+
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.stepWizardItem {
+	animation: fadeInUp 0.5s ease forwards;
+	animation-delay: calc(var(--item-index) * 0.1s);
+}
+
+.progressCount:focus {
+	outline: none;
+	box-shadow: 0 0 0 3px rgba(25, 168, 228, 0.4);
+}
+
+@media (prefers-color-scheme: dark) {
+	.stepWizardList::before {
+		background: #19A8E4;
+	}
+
+	.progressCount {
+		background: #2d2d2d;
+		border-color: #404040;
+		color: #e0e0e0;
+	}
+
+	.progressLabel {
+		color: #e0e0e0;
+	}
+
+	.stepWizardItem:not(.completed):not(.active) .progressCount:hover {
+		background: #363636;
+		border-color: #404040;
+	}
+}

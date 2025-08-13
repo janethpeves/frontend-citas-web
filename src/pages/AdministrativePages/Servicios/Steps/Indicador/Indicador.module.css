@@ -1,0 +1,31 @@
+.dropdown {
+	padding-left: 15px;
+	font-size: 17px;
+	font-weight: 500;
+	line-height: 26.63px;
+	text-align: left;
+	display: flex;
+	gap: 16px;
+    padding-bottom: 40px;
+}
+.dropdown > label {
+	margin-top: 14px;
+}
+.info {
+	display: flex;
+	width: 500px;
+    flex-direction: column;
+	justify-content: center;
+}
+.info > label {
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 26.63px;
+	text-align: center;
+}
+.leyenda {
+    display: grid;
+    justify-content: center;
+	width: 350px;
+
+}

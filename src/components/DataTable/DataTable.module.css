@@ -1,0 +1,197 @@
+/* DataTable.module.css */
+
+.sectionStructure {
+  padding: 20px 0;
+}
+
+.tableContainer {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  /* Scroll suave para dispositivos iOS */
+  margin: 2rem 0;
+}
+
+.dataTable {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.dataTable th,
+.dataTable td {
+  padding: 15px;
+  text-align: center;
+  vertical-align: middle;
+  border-bottom: 1px solid #eaeaea;
+  white-space: nowrap;
+  /* Evita que el texto se divida en múltiples líneas */
+}
+
+.dataTable th {
+  background-color: #f9f9f9;
+  color: #333;
+  font-weight: 600;
+}
+
+.dataTable tr {
+  background-color: #ffffff;
+  transition: background-color 0.3s ease;
+}
+
+.dataTable tr:hover {
+  background-color: #f1f1f1;
+}
+
+.tableRow {
+  border-radius: 16px;
+  background-color: #ffffff;
+  margin: 10px 0;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.tableImage {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.actionIcons {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.icon {
+  cursor: pointer;
+  color: #007bff;
+  font-size: 18px;
+  transition: color 0.3s ease;
+}
+
+.icon:hover {
+  color: #0056b3;
+}
+
+.dataTable td:last-child {
+  border-right: none;
+}
+
+.actionButton {
+  all: unset;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.actionButton:hover {
+  transform: scale(1.1);
+}
+
+.btnContainer {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+@media (max-width: 767px) {
+  .tableContainer {
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .dataTable {
+    width: auto;
+    min-width: 100%;
+  }
+
+  .dataTable th,
+  .dataTable td {
+    padding: 12px 10px;
+    font-size: 14px;
+  }
+
+  .btnContainer {
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .dataTable {
+    width: 100%;
+  }
+}
+
+.tableContainer::-webkit-scrollbar {
+  height: 8px;
+}
+
+.tableContainer::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.tableContainer::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.tableContainer::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.paginationContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.rowsPerPage>label {
+  margin-right: .4rem;
+}
+
+.rowsPerPage>select {
+  padding: .2rem;
+  border-radius: 8px;
+  border: 1px solid #007bff;
+}
+
+.paginationButton {
+  border: none;
+  outline: none;
+  padding: .5rem;
+  border-radius: 8px;
+  background-color: #007bff;
+  margin: 0 .3rem;
+  color: white;
+  cursor: pointer;
+  transition: background .3s ease-in;
+}
+
+.paginationButton:hover {
+  background-color: #0c6bcf;
+}
+
+.paginationButton:disabled {
+  opacity: 0.50;
+  background-color: #fff;
+  color: #000000;
+}
+
+.pageButton {
+  border: 1px solid #555;
+  padding: .3rem .6rem;
+  border-radius: 8px;
+  background-color: #fff;
+  margin: 0 .3rem;
+  cursor: pointer;
+  transition: background .3s ease-in;
+}
+
+.pageButton:hover {
+  background-color: #eaeaea;
+}
+
+.pageButton:disabled {
+  opacity: .50;
+}

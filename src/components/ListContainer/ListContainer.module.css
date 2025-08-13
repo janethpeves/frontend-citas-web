@@ -1,0 +1,26 @@
+.list__container {
+	display: grid;
+	padding: 10px;
+	color: rgba(19, 15, 38, 1);
+	grid-template-columns: 1fr 1fr;
+	gap: 1.5rem;
+	width: 100%;
+}
+
+.list__container {
+	display: flex;
+	flex-direction: column;
+	min-width: 20vw;
+	height: 60vh; /* Mantiene la altura fija también en pantallas pequeñas */
+	overflow-y: auto; /* Scroll vertical para pantallas pequeñas */
+	scrollbar-color: var(--primary-color) #fff;
+	scrollbar-width: thin;
+}
+
+@media (max-width: 1024px) {
+	.list__container {
+		margin-left: 20px;
+		align-content: center;
+		min-width: 110vw;
+	}
+}

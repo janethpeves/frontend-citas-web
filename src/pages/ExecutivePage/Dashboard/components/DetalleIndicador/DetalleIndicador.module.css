@@ -1,0 +1,45 @@
+.container {
+  padding: 20px;
+}
+
+.dropdownContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.dropdown {
+  width: 250px;
+}
+
+.hola {
+  display: flex;
+  justify-content: center;
+  margin-top: 6rem;
+  width: 100%;
+}
+
+.backButton {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background-color: #00aaff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  position: absolute;
+  top: 0;
+  right: 50px;
+}
+
+.backButton:hover {
+  background-color: #008ecc;
+}

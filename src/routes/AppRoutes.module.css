@@ -1,0 +1,20 @@
+.mainContent__container {
+	width: 100%;
+	position: relative;
+	display: grid;
+	grid-template-columns: 280px 1fr;
+}
+
+.sidebar {
+	position: sticky;
+	top: 0;
+	min-height: 100vh;
+	z-index: 1000;
+}
+
+
+.body {
+	position: relative;
+	min-height: 100vh;
+	z-index: 1;
+}

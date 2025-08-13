@@ -1,0 +1,87 @@
+.modalContainer {
+  background-color: #fff;
+  border-radius: 10px;
+
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.detailsSection {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding-bottom: 10px;
+  
+}
+
+.detailItem {
+  font-size: 14px;
+}
+
+.detailItem span {
+  color: #666;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.detailItem p {
+  font-weight: bold;
+  color: #333;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.detailItem svg {
+  font-size: 14px;
+}
+
+.downloadLink {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.downloadLink:hover {
+  text-decoration: underline;
+}
+
+.amount {
+  font-weight: bold;
+  font-size: 18px;
+  color: #333;
+}
+
+.insuranceInfo {
+  background-color: #f0f8ff;
+  padding: 15px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.insuranceLabel {
+  font-size: 14px;
+  color: #666;
+}
+
+.insuranceValue {
+  font-weight: bold;
+  font-size: 16px;
+  color: #333;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}

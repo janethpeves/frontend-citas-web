@@ -1,0 +1,31 @@
+.item__group {
+	width: 100%;
+	display: grid;
+	gap: 5px;
+}
+.textLabel {
+	font-size: 13px;
+	white-space: nowrap;
+}
+.item__column {
+	grid-template-columns: 1fr;
+}
+
+.item__row {
+	grid-template-columns: max-content 1fr;
+	align-items: center;
+}
+
+.item__reverse {
+	/* grid reverse */
+
+	display: flex;
+	flex-direction: row-reverse;
+	justify-content: flex-end;
+}
+@media only screen and (max-width: 500px) {
+	.textLabel {
+		font-size: 12px;
+		white-space: wrap;
+	}
+}

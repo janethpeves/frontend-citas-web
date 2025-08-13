@@ -1,0 +1,28 @@
+.header {
+	display: flex;
+	justify-content: space-between;
+	gap: 15px;
+	padding-top: 45px;
+}
+
+.title > label {
+	font-size: 22px;
+	font-weight: 600;
+	line-height: 26.63px;
+	text-align: left;
+	color: #130f26;
+}
+.title > p {
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 16.94px;
+	text-align: left;
+}
+.button {
+	color: #19a8e4;
+	font-size: 12px;
+	font-weight: 500;
+}
+.button:hover {
+	cursor: pointer;
+}

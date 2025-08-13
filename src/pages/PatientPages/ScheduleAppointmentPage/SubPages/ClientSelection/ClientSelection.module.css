@@ -1,0 +1,192 @@
+.container {
+    max-width: 1024px;
+    min-width: 320px;
+    padding: 0.1rem 1rem;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+}
+
+.formWrapper {
+    width: 100%;
+    max-width: 768px;
+    margin: 0 auto;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.card {
+    background-color: white;
+    border-radius: 0.75rem;
+    box-shadow:
+        0 4px 6px -1px rgba(0, 0, 0, 0.1),
+        0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    padding: 2rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    max-width: 500px;
+}
+
+.title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    text-align: center;
+    color: #333;
+    line-height: 1.3;
+    margin: 0;
+}
+
+.dropdown {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.dropdown :global(.p-dropdown) {
+    width: 100%;
+    max-width: 500px;
+}
+
+.infoBox {
+    background-color: #e6f7ff;
+    padding: 1.25rem;
+    border-radius: 0.5rem;
+    border-left: 4px solid #19a8e4;
+    max-width: 500px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.infoText {
+    font-size: 1rem;
+    color: #4a5568;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.modalitySection {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+.modalityTitle {
+    font-size: 1.5rem;
+    font-weight: 600;
+    text-align: center;
+    color: #333;
+    margin: 0;
+}
+
+.modalityButtons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 500px;
+}
+
+.modalityButtons :global(.p-selectbutton) {
+    display: flex;
+    width: 100%;
+}
+
+.modalityButtons :global(.p-selectbutton .p-button) {
+    flex: 1;
+    justify-content: center;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 1rem 0;
+}
+
+.buttonContainer :global(button) {
+    min-width: 200px;
+}
+
+@media (max-width: 1024px) {
+    .container {
+        padding: 0.75rem;
+    }
+
+    .card {
+        padding: 1.5rem;
+    }
+
+    .title {
+        font-size: 1.5rem;
+    }
+
+    .modalityTitle {
+        font-size: 1.25rem;
+    }
+}
+
+@media (max-width: 640px) {
+    .container {
+        padding: 0.5rem;
+    }
+
+    .formWrapper {
+        padding: 0.5rem;
+        gap: 1rem;
+    }
+
+    .card {
+        padding: 1rem;
+        gap: 1rem;
+        border-radius: 0.5rem;
+    }
+
+    .title {
+        font-size: 1.25rem;
+    }
+
+    .infoBox {
+        padding: 1rem;
+    }
+
+    .infoText {
+        font-size: 0.875rem;
+    }
+
+    .modalityTitle {
+        font-size: 1.125rem;
+    }
+
+    .modalityButtons {
+        gap: 0.5rem;
+    }
+
+    .buttonContainer :global(button) {
+        min-width: 160px;
+    }
+}
+
+/* PrimeReact components */
+:global(.p-dropdown),
+:global(.p-selectbutton) {
+    width: 100%;
+}
+
+:global(.p-selectbutton .p-button) {
+    padding: 0.75rem 1rem;
+    white-space: nowrap;
+}
+
+@media (max-width: 480px) {
+    :global(.p-selectbutton .p-button) {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.875rem;
+    }
+}

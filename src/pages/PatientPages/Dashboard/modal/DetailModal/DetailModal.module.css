@@ -1,0 +1,76 @@
+.detail__div {
+	display: flex;
+    flex-wrap: wrap;
+	justify-content: space-between;
+	padding: 16px;
+	border-radius: 13px 0px 0px 0px;
+	background-color: #effaff;
+	box-shadow: 0px 0px 4px 0px #00000040;
+}
+.detail__div > div > label {
+	font-size: 12px;
+	font-weight: 500;
+	line-height: 16.52px;
+	text-align: left;
+
+	color: #130f26;
+}
+.detail__div > div > p {
+	font-family: Inter;
+	font-size: 10px;
+	font-weight: 300;
+	line-height: 13.1px;
+	text-align: left;
+
+	color: #130f26;
+}
+.content {
+    display: flex;
+    flex-direction: column;
+    padding-left: 24px;
+    padding-top: 16px;
+    justify-content: center;
+}
+.items {
+	display: grid;
+    
+    grid-template-columns: 1fr 1fr;
+	margin-top: 20px;
+}
+
+.item > label {
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 19.36px;
+	text-align: left;
+	color: #130f26;
+}
+.item > p {
+	font-size: 14px;
+	font-weight: 300;
+	line-height: 16.94px;
+	text-align: left;
+
+	color: #130f26;
+}
+.item > a {
+	font-size: 14px;
+	font-weight: 300;
+	line-height: 16.94px;
+	text-align: left;
+
+	color: #130f26;
+}
+.item > a:hover {
+	cursor: pointer;
+
+	color: #19A8E4;
+}
+.select__perfil {
+	display: flex;
+	justify-content: center;
+}
+.buttons {
+	display: flex;
+	background-color: #130f26;
+}
