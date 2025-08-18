@@ -1,13 +1,10 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
-import ReCAPTCHA from "react-google-recaptcha";
+// import ReCAPTCHA from "react-google-recaptcha";
 
 import { useNavigate } from "react-router-dom";
 import { InputText } from "primereact/inputtext";
 import { Dropdown } from "primereact/dropdown";
 import { Button } from "primereact/button";
-
-import useAuthStore from "@/store/slices/auth/useAuthStore";
 
 import bg__img from "@/assets/img/image.png";
 import style from "./LoginPage.module.css";
@@ -21,22 +18,17 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 
 import { usePostFetch } from "@/hooks/usePostFetch";
-import { useAppDispatch } from "@/store/hooks";
-import { setToast } from "@/store/slices/toast/toastSlice";
-import { showError } from "@/helpers/showError";
+
 import { TermsAndConditions } from "./modalTermsAndConditions/TermsAndConditions";
 
-// import { useAppDispatch } from "@/store/hooks";
-// import { setToast } from "@/store/slices/toast/toastSlice";
-
 interface loginProps {
-  user: string;
-  password: string;
+  User: string;
+  Password: string;
 }
 
 const initialValues: loginProps = {
-  user: "",
-  password: "",
+  User: "",
+  Password: "",
 };
 
 const options = [
@@ -46,140 +38,45 @@ const options = [
 ];
 
 export const LoginPage = () => {
-  const addModal = useModal();
   const modalTerms = useModal();
   const navigate = useNavigate();
-  const postFetchData = usePostFetch("/auth/login");
-
-  const [ui, setUi] = useState<typeUi>(null);
-  const [data, setData] = useState<any[] | []>([]);
-
-  const [, setCaptcha] = useState<string | null>();
-  const onChange = (value: string | null) => {
-    setCaptcha(value);
-  };
-
-  const { token, kibLevel } = useAuthStore();
-
-  const login = useAuthStore((state) => state.login);
-  const uiInterface = useAuthStore((state) => state.setUi);
-
-  const dispatch = useAppDispatch();
+  const postFetchData = usePostFetch("/AppMobil/login");
 
   const { values, handleSubmit, handleChange, handleBlur } = useFormik({
     initialValues: initialValues,
     onSubmit: async (values) => {
-      await postFetchData.postFetchData(values);
+      const loginData = {
+        GetLoginRequest: {
+          OriCenAsiCod: "1",
+          CenAsiCod: "100",
+          User: values.User,
+          Password: values.Password,
+        },
+      };
+      await postFetchData.postFetchData(loginData);
     },
     validationSchema: Yup.object({
-      user: Yup.string().required("Usuario Requerido"),
-      password: Yup.string().required("Contraseña Requerida"),
+      User: Yup.string().required("Usuario Requerido"),
+      Password: Yup.string().required("Contraseña Requerida"),
     }),
-    validateOnBlur: false,
-    validateOnChange: false,
-    validate: (values) => {
-      const errors = {};
-      try {
-        Yup.object({
-          user: Yup.string().required("Usuario Requerido"),
-          password: Yup.string().required("Contraseña Requerida"),
-        }).validateSync(values, { abortEarly: false });
-      } catch (validationErrors) {
-        showError(errors);
-      }
-      return errors;
-    },
   });
 
   useEffect(() => {
-    if (postFetchData.response?.Getloginresponse?.Code === "000") {
-      // aca obtengo las interfaces disponibles
-      const avalaibleInterfaces: any = {
-        UsuPerPac: postFetchData.response?.Getloginresponse?.UsuPerPac,
-        UsuPerDir: postFetchData.response?.Getloginresponse?.UsuPerDir,
-        UsuPerAsi: postFetchData.response?.Getloginresponse?.UsuPerAsi,
-      };
-      // aca las filtro para setearlas en el select
-      const filterData = options.filter(
-        (item: any) => avalaibleInterfaces?.[item?.id] === "1",
-      );
+    if (postFetchData.response?.Code === "000") {
+      console.log("Inicio sesion exitoso");
+      console.log(postFetchData.response);
 
-      if (filterData?.length > 1) {
-        const token = postFetchData.response?.token;
-        if (token) {
-          login(
-            token,
-            postFetchData.response?.Getloginresponse?.UsuPacCod,
-            postFetchData.response?.Getloginresponse?.UsuNombres,
-          );
-        }
-        // seteo data para evitar perderla en posibles reinicios de pagina
-        localStorage.setItem("data", JSON.stringify(filterData));
-        // aca seteo el la data filtrada en el selector para interfaces
-        setData(filterData);
-      } else if (filterData?.length === 1) {
-        const token = postFetchData.response?.token;
-        if (token) {
-          login(
-            token,
-            postFetchData.response?.Getloginresponse?.UsuPacCod,
-            postFetchData.response?.Getloginresponse?.UsuNombres,
-          );
-        }
-        // si el usuario no tiene más perfiles disponibles
-        // inicia sesión de una vez
-        uiInterface(filterData[0].value);
+      if (postFetchData.response?.UsuPerPac == 1) {
+        console.log("Paciente");
       }
-    } else {
-      if (postFetchData.response?.Getloginresponse?.Code !== undefined) {
-        dispatch(
-          setToast({
-            severity: "error",
-            summary:
-              "Something went wrong: " +
-              postFetchData.response?.Getloginresponse?.Code,
-            detail: postFetchData.response?.Getloginresponse?.Message,
-          }),
-        );
+      if (postFetchData.response?.UsuPerAsi == 1) {
+        console.log("Profesional");
+      }
+      if (postFetchData.response?.UsuPerDir == 1) {
+        console.log("Directivo");
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [postFetchData.response]);
-
-  // aca valido si existe token pero no interfaz
-  const storedData = localStorage.getItem("data"); // recolecto la data accesible que se guardo anteriormente
-  useEffect(() => {
-    if (storedData) {
-      // si existe un storedData
-      setData(JSON.parse(storedData)); // la setea para el selectField
-    }
-    if (token && !kibLevel) {
-      // si existe token pero no kiblevel
-      addModal.onVisibleModal(); // abre el modal
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [token, kibLevel, storedData]);
-  // boton del modal
-
-  const onSubmit = () => {
-    console.log(ui);
-    if (token) {
-      // si existe token y ui no es nulo
-      if (ui !== null) {
-        dispatch(
-          setToast({
-            severity: "success",
-            summary: "¡Inicio de sesión exitoso!",
-            detail: "¡Bienvenido de vuelta!",
-          }),
-        );
-        uiInterface(ui);
-        localStorage.removeItem("data"); // remueve data del localStorage
-        navigate("/");
-        // setea la interfaz en el estado global
-      }
-    }
-  };
 
   return (
     <form noValidate onSubmit={handleSubmit} className={style.login}>
@@ -189,16 +86,12 @@ export const LoginPage = () => {
         <img className={style.logo} src={logo} alt="Logo" />
         <div className={style.container__form}>
           <h2 className={style.txt__welcome}>Bienvenido de vuelta</h2>
-          {/*
-              <span className={style.txt__create}>
-                ¿No tienes una cuenta? <a href="">Regístrate aquí</a>
-              </span>
-            */}
+
           <div className={style.form__login}>
             <InputText
               id="user"
-              name="user"
-              value={values.user}
+              name="User"
+              value={values.User}
               onChange={handleChange}
               className={style.input__line}
               placeholder="Usuario:"
@@ -208,20 +101,22 @@ export const LoginPage = () => {
             <InputText
               id="password"
               type="password"
-              name="password"
-              value={values.password}
+              name="Password"
+              value={values.Password}
               onChange={handleChange}
               className={style.input__line}
               placeholder="Contraseña:"
               onBlur={handleBlur}
             />
-            <div className={style.captcha}>
+
+            {/* <div className={style.captcha}>
               <ReCAPTCHA
                 sitekey="AAAA"
                 onChange={onChange}
                 style={{ paddingTop: "15px" }}
               />
-            </div>
+            </div> */}
+
             <div className={style.terms}>
               <Checkbox value name="" onChange={() => {}} checked />
               <label>
@@ -244,12 +139,6 @@ export const LoginPage = () => {
                 borderColor: "rgba(25, 168, 228, 1)",
               }}
             />
-            {/*
-                <span className={style.txt__create}>
-                  ¿Olvidaste tu contraseña? <br />
-                  <a href="#">Haz clic aquí para recuperarla</a>
-                </span>
-            */}
           </div>
         </div>
       </div>
@@ -259,51 +148,6 @@ export const LoginPage = () => {
         modalStatus={modalTerms.modalStatus}
       >
         <TermsAndConditions onHideModal={modalTerms.onHideModal} />
-      </PrimeModal>
-      <PrimeModal
-        header="Elige un perfil"
-        onHideModal={() => undefined}
-        closeable={false}
-        footer={
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "end",
-            }}
-          >
-            <Button
-              style={{
-                backgroundColor: "#19A8E4",
-                border: "none",
-                borderRadius: "8px",
-                color: "#FFFFFF",
-              }}
-              onClick={onSubmit}
-            >
-              Continuar
-            </Button>
-          </div>
-        }
-        modalStatus={addModal.modalStatus}
-      >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-          }}
-        >
-          <div className={style.select__perfil}>
-            <Dropdown
-              value={ui}
-              name="ui"
-              options={data}
-              onChange={(e) => setUi(e.value)}
-              optionLabel="name"
-              optionValue="value"
-              placeholder="Selecciona una opción"
-            />
-          </div>
-        </div>
       </PrimeModal>
     </form>
   );

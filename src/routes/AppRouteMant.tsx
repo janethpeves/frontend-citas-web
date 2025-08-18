@@ -23,78 +23,97 @@ import useAuthStore from "@/store/slices/auth/useAuthStore";
 import { useSidebarStore } from "@/store/slices/sidebar/useSidebarStore";
 
 export const AppRouteMant = () => {
-	// Hook para obtener la ruta actual
-	const location = useLocation();
-	const { kibLevel } = useAuthStore();
+  // Hook para obtener la ruta actual
+  const location = useLocation();
+  const { kibLevel } = useAuthStore();
 
-	const { isSidebarOpen } = useSidebarStore();
-	return (
-		<>
-			{kibLevel === "Professional" && (
-				<MainStructure>
-					<div className={style.sidebar}>
-						<Sidebar />
-					</div>
-					<MainContainer>
-						<section className={`${style.body} ${isSidebarOpen ? style.sidebarOpen : ""}`}>
-							{/* Condicional para no renderizar HeaderSearch si la ruta es /agendar-cita */}
-							{location.pathname !== "/agendar-cita" && <HeaderSearch isHidden />}
-							<Routes>
-								<Route path="/" element={<MedicalDashboard />} />
-								<Route path="/perfil" element={<Profile />} />
-								<Route path="/Pacientes" element={<Patients />} />
-								<Route path="/hospitalizacion" element={<Hospitalizacion />} />
-								<Route path="/programacion" element={<Programacion />} />
-								<Route path="/*" element={<Navigate to="/" />} />
-							</Routes>
-						</section>
-					</MainContainer>
-				</MainStructure>
-			)}
-			{kibLevel === "Patient" && (
-				<MainStructure>
-					<div className={style.sidebar}>
-						<Sidebar />
-					</div>
-					<MainContainer>
-						<section className={`${style.body} ${isSidebarOpen ? style.sidebarOpen : ""}`}>
-							{/* Condicional para no renderizar HeaderSearch si la ruta es /agendar-cita */}
-							{location.pathname !== "/agendar-cita" && <HeaderSearch />}
-							<Routes>
-								<Route path="/" element={<Dashboard />} />
-								<Route path="/perfil" element={<Profile />} />
-								<Route path="/recetas" element={<RecetasPage />} />
-								<Route path="/atenciones" element={<Atenciones />} />
-								<Route path="/resultados" element={<ResultsPage />} />
-								<Route path="/resultados/:id" element={<DetailResult />} />
-								<Route path="/agendar-cita" element={<ScheduleAppointmentPage />} />
-								<Route path="/*" element={<Navigate to="/" />} />
-							</Routes>
-						</section>
-					</MainContainer>
-				</MainStructure>
-			)}
+  const { isSidebarOpen } = useSidebarStore();
+  return (
+    <>
+      {kibLevel === "Professional" && (
+        <MainStructure>
+          <div className={style.sidebar}>
+            <Sidebar />
+          </div>
+          <MainContainer>
+            <section
+              className={`${style.body} ${
+                isSidebarOpen ? style.sidebarOpen : ""
+              }`}
+            >
+              {/* Condicional para no renderizar HeaderSearch si la ruta es /agendar-cita */}
+              {location.pathname !== "/agendar-cita" && (
+                <HeaderSearch isHidden />
+              )}
+              <Routes>
+                <Route path="/" element={<MedicalDashboard />} />
+                <Route path="/perfil" element={<Profile />} />
+                <Route path="/Pacientes" element={<Patients />} />
+                <Route path="/hospitalizacion" element={<Hospitalizacion />} />
+                <Route path="/programacion" element={<Programacion />} />
+                <Route path="/*" element={<Navigate to="/" />} />
+              </Routes>
+            </section>
+          </MainContainer>
+        </MainStructure>
+      )}
+      {kibLevel === "Patient" && (
+        <MainStructure>
+          <div className={style.sidebar}>
+            <Sidebar />
+          </div>
+          <MainContainer>
+            <section
+              className={`${style.body} ${
+                isSidebarOpen ? style.sidebarOpen : ""
+              }`}
+            >
+              {/* Condicional para no renderizar HeaderSearch si la ruta es /agendar-cita */}
+              {location.pathname !== "/agendar-cita" && <HeaderSearch />}
+              <Routes>
+                <Route path="/" element={<Dashboard />} />
+                <Route path="/perfil" element={<Profile />} />
+                <Route path="/recetas" element={<RecetasPage />} />
+                <Route path="/atenciones" element={<Atenciones />} />
+                <Route path="/resultados" element={<ResultsPage />} />
+                <Route path="/resultados/:id" element={<DetailResult />} />
+                <Route
+                  path="/agendar-cita"
+                  element={<ScheduleAppointmentPage />}
+                />
+                <Route path="/*" element={<Navigate to="/" />} />
+              </Routes>
+            </section>
+          </MainContainer>
+        </MainStructure>
+      )}
 
-			{kibLevel === "Administrative" && (
-				<MainStructure>
-					<div className={style.sidebar}>
-						<Sidebar />
-					</div>
-					<MainContainer>
-						<section className={`${style.body} ${isSidebarOpen ? style.sidebarOpen : ""}`}>
-							{/* Condicional para no renderizar HeaderSearch si la ruta es /agendar-cita */}
-							{location.pathname !== "/agendar-cita" && <HeaderSearch isHidden />}
-							<Routes>
-								<Route path="/" element={<AdministrativeDashboard />} />
-								<Route path="/perfil" element={<Profile />} />
-								<Route path="/servicios" element={<Servicios />} />
+      {kibLevel === "Administrative" && (
+        <MainStructure>
+          <div className={style.sidebar}>
+            <Sidebar />
+          </div>
+          <MainContainer>
+            <section
+              className={`${style.body} ${
+                isSidebarOpen ? style.sidebarOpen : ""
+              }`}
+            >
+              {/* Condicional para no renderizar HeaderSearch si la ruta es /agendar-cita */}
+              {location.pathname !== "/agendar-cita" && (
+                <HeaderSearch isHidden />
+              )}
+              <Routes>
+                <Route path="/" element={<AdministrativeDashboard />} />
+                <Route path="/perfil" element={<Profile />} />
+                <Route path="/servicios" element={<Servicios />} />
 
-								<Route path="/*" element={<Navigate to="/" />} />
-							</Routes>
-						</section>
-					</MainContainer>
-				</MainStructure>
-			)}
-		</>
-	);
+                <Route path="/*" element={<Navigate to="/" />} />
+              </Routes>
+            </section>
+          </MainContainer>
+        </MainStructure>
+      )}
+    </>
+  );
 };
