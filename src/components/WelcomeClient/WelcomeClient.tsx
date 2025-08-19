@@ -1,9 +1,10 @@
-import useAuthStore from "@/store/slices/auth/useAuthStore";
+// import useAuthStore from "@/store/slices/auth/useAuthStore";
 import style from "./WelcomeClient.module.css";
 import doctorIcon from "@/assets/icons/doctor__welcome.svg";
 
 export const WelcomeClient = () => {
-  const { PacName } = useAuthStore();
+  // const { PacName } = useAuthStore();
+  const PacName = "Juan Perez";
   return (
     <div className={style.welcome__container}>
       <div className={style.content__wrapper}>

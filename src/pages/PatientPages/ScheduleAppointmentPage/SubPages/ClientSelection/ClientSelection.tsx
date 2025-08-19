@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Dropdown } from "primereact/dropdown";
 import { SelectButton } from "primereact/selectbutton";
 import { usePostFetch } from "@/hooks/usePostFetch";
-import useAuthStore from "@/store/slices/auth/useAuthStore";
+// import useAuthStore from "@/store/slices/auth/useAuthStore";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { setState } from "@/store/slices/scheduleAppointmentSlice/scheduleAppointmentSlice";
@@ -51,9 +51,10 @@ export const ClientSelection: React.FC<ClienSelectProps> = ({
   const dispatch = useAppDispatch();
   const getPlans = usePostFetch("/health-plans");
   const [options, setOption] = useState<ClientSelectionProps[]>([]);
-  const { usuCod } = useAuthStore();
+  // const { usuCod } = useAuthStore();
+  const usuCod = "1";
   const appointmentData = useAppSelector(
-    (state: RootState) => state.scheduleAppointment,
+    (state: RootState) => state.scheduleAppointment
   );
 
   useEffect(() => {
@@ -67,7 +68,7 @@ export const ClientSelection: React.FC<ClienSelectProps> = ({
   useEffect(() => {
     if (getPlans.response)
       setOption(
-        getPlans.response?.Sdtplanpacapp?.["sdtPlanPacApp.sdtPlanPacAppItem"],
+        getPlans.response?.Sdtplanpacapp?.["sdtPlanPacApp.sdtPlanPacAppItem"]
       );
   }, [getPlans.response]);
 
@@ -79,7 +80,7 @@ export const ClientSelection: React.FC<ClienSelectProps> = ({
           setState({
             ...values,
             Usupaccod: usuCod,
-          }),
+          })
         );
         setData((prev: any) => {
           return {
@@ -103,7 +104,7 @@ export const ClientSelection: React.FC<ClienSelectProps> = ({
           Yup.object({
             Id: Yup.string().required("Tipo de financiamiento requerido."),
             Tipoaten: Yup.string().required(
-              "Modalidad de la atención requerido.",
+              "Modalidad de la atención requerido."
             ),
           }).validateSync(values, { abortEarly: false });
         } catch (validationErrors) {
@@ -115,7 +116,7 @@ export const ClientSelection: React.FC<ClienSelectProps> = ({
   useEffect(() => {
     if (values.Id && appointmentData.Id === "") {
       const filterData: ClientSelectionProps[] = options.filter(
-        (option) => option.Id === values.Id,
+        (option) => option.Id === values.Id
       );
       setValues((prev) => {
         return {

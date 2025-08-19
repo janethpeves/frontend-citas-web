@@ -9,14 +9,15 @@ import { Button } from "primereact/button";
 import { InputText } from "primereact/inputtext";
 import { FloatLabel } from "primereact/floatlabel";
 import { Divider } from "primereact/divider";
-import useAuthStore from "@/store/slices/auth/useAuthStore";
+// import useAuthStore from "@/store/slices/auth/useAuthStore";
 
 export const Profile = () => {
   const [state, setState] = useState(1);
   const [selectedGender, setSelectedGender] = useState<
     "hombre" | "mujer" | null
   >(null);
-  const { PacName } = useAuthStore();
+  // const { PacName } = useAuthStore();
+  const PacName = "Test";
   const name = PacName?.toLocaleLowerCase().split(", ");
 
   const handleGenderSelect = (gender: "hombre" | "mujer") => {
@@ -87,7 +88,9 @@ export const Profile = () => {
                     <div className={style.genderButtons}>
                       <button
                         type="button"
-                        className={`${style.genderButton} ${selectedGender === "hombre" ? style.selected : ""}`}
+                        className={`${style.genderButton} ${
+                          selectedGender === "hombre" ? style.selected : ""
+                        }`}
                         onClick={() => handleGenderSelect("hombre")}
                         aria-label="Seleccionar genero masculino"
                         aria-pressed={selectedGender === "hombre"}
@@ -96,7 +99,9 @@ export const Profile = () => {
                       </button>
                       <button
                         type="button"
-                        className={`${style.genderButton} ${selectedGender === "mujer" ? style.selected : ""}`}
+                        className={`${style.genderButton} ${
+                          selectedGender === "mujer" ? style.selected : ""
+                        }`}
                         onClick={() => handleGenderSelect("mujer")}
                         aria-label="Seleccionar genero femenino"
                         aria-pressed={selectedGender === "mujer"}

@@ -15,22 +15,24 @@ import { MedicalDashboard } from "@/pages/ProfessionalPages/Dashboard/Dashboard"
 import { Patients } from "@/pages/ProfessionalPages/Patients/Patients";
 import { Hospitalizacion } from "@/pages/ProfessionalPages/hospitalizacion/Hospitalizacion";
 import { Programacion } from "@/pages/ProfessionalPages/programacion/Programacion";
+import { useAppSelector } from "@/store/hooks";
 
 import { AdministrativeDashboard } from "@/pages/AdministrativePages/Dashboard/Dashboard";
 import { Servicios } from "@/pages/AdministrativePages/Servicios/Servicios";
 import { Atenciones } from "@/pages/PatientPages/Atenciones/Atenciones";
-import useAuthStore from "@/store/slices/auth/useAuthStore";
-import { useSidebarStore } from "@/store/slices/sidebar/useSidebarStore";
+// import useAuthStore from "@/store/slices/auth/useAuthStore";
+// import { useSidebarStore } from "@/store/slices/sidebar/useSidebarStore";
 
 export const AppRouteMant = () => {
   // Hook para obtener la ruta actual
   const location = useLocation();
-  const { kibLevel } = useAuthStore();
+  const { role } = useAppSelector((state) => state.auth);
 
-  const { isSidebarOpen } = useSidebarStore();
+  // const { isSidebarOpen } = useSidebarStore();
+  const isSidebarOpen = false;
   return (
     <>
-      {kibLevel === "Professional" && (
+      {role === "Professional" && (
         <MainStructure>
           <div className={style.sidebar}>
             <Sidebar />
@@ -57,7 +59,7 @@ export const AppRouteMant = () => {
           </MainContainer>
         </MainStructure>
       )}
-      {kibLevel === "Patient" && (
+      {role === "Patient" && (
         <MainStructure>
           <div className={style.sidebar}>
             <Sidebar />
@@ -68,7 +70,6 @@ export const AppRouteMant = () => {
                 isSidebarOpen ? style.sidebarOpen : ""
               }`}
             >
-              {/* Condicional para no renderizar HeaderSearch si la ruta es /agendar-cita */}
               {location.pathname !== "/agendar-cita" && <HeaderSearch />}
               <Routes>
                 <Route path="/" element={<Dashboard />} />
@@ -88,7 +89,7 @@ export const AppRouteMant = () => {
         </MainStructure>
       )}
 
-      {kibLevel === "Administrative" && (
+      {role === "Administrative" && (
         <MainStructure>
           <div className={style.sidebar}>
             <Sidebar />
@@ -99,7 +100,6 @@ export const AppRouteMant = () => {
                 isSidebarOpen ? style.sidebarOpen : ""
               }`}
             >
-              {/* Condicional para no renderizar HeaderSearch si la ruta es /agendar-cita */}
               {location.pathname !== "/agendar-cita" && (
                 <HeaderSearch isHidden />
               )}

@@ -10,14 +10,20 @@ import {
   appRoutesPatient,
   appRoutesProf,
 } from "@/data/Route";
-import { useSidebarStore } from "@/store/slices/sidebar/useSidebarStore";
-import useAuthStore from "@/store/slices/auth/useAuthStore";
+
 import { useNavigate } from "react-router-dom";
 import { Menu } from "lucide-react";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { logout } from "@/store/slices/auth/authSlice";
 
 export const Sidebar: React.FC = () => {
-  const { isSidebarOpen, toggleSidebar } = useSidebarStore();
-  const { kibLevel, logout } = useAuthStore();
+  // const { isSidebarOpen, toggleSidebar } = useSidebarStore();
+  const isSidebarOpen = false;
+  const toggleSidebar = "";
+  const dispatch = useAppDispatch();
+
+  const { role } = useAppSelector((state) => state.auth);
+
   const navigate = useNavigate();
   const [isMobile, setIsMobile] = useState(false);
   useEffect(() => {
@@ -36,12 +42,12 @@ export const Sidebar: React.FC = () => {
   }, [isMobile, isSidebarOpen]);
 
   const handleLogout = () => {
-    logout();
+    dispatch(logout());
     navigate("/login");
   };
 
   const getCurrentRoutes = () => {
-    switch (kibLevel) {
+    switch (role) {
       case "Professional":
         return appRoutesProf;
       case "Patient":
@@ -91,7 +97,9 @@ export const Sidebar: React.FC = () => {
                 <img
                   src={arrowIcon}
                   alt="toggle sidebar"
-                  className={`${styles.arrowIcon} ${isSidebarOpen ? styles.rotated : ""}`}
+                  className={`${styles.arrowIcon} ${
+                    isSidebarOpen ? styles.rotated : ""
+                  }`}
                 />
               </Button>
             </div>
@@ -117,7 +125,9 @@ export const Sidebar: React.FC = () => {
           >
             <img src={exitIcon} alt="exit" />
             <span
-              className={`${styles.titleRoute} ${isSidebarOpen ? styles.visible : ""}`}
+              className={`${styles.titleRoute} ${
+                isSidebarOpen ? styles.visible : ""
+              }`}
             >
               Cerrar Sesión
             </span>

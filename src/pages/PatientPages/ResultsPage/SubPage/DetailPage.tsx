@@ -5,7 +5,7 @@ import moment from "moment";
 import { Button } from "primereact/button";
 import document from "@/assets/icons/Sidebar/document.svg";
 import { useNavigate, useParams } from "react-router-dom";
-import useAuthStore from "@/store/slices/auth/useAuthStore";
+// import useAuthStore from "@/store/slices/auth/useAuthStore";
 import { postFetch } from "@/helpers/postFetch";
 import { useAppDispatch } from "@/store/hooks";
 import { setToast } from "@/store/slices/toast/toastSlice";
@@ -13,7 +13,8 @@ import { setToast } from "@/store/slices/toast/toastSlice";
 export const DetailResult = () => {
 	const [data, setData] = useState<any>([]);
 	const { id } = useParams();
-	const { usuCod } = useAuthStore();
+	// const { usuCod } = useAuthStore();
+	const usuCod = "1";
 	const navigate = useNavigate();
 	const dispatch = useAppDispatch();
 	useEffect(() => {
