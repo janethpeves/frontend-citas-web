@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 
 import { useNavigate } from "react-router-dom";
 import { InputText } from "primereact/inputtext";
-import { Dropdown } from "primereact/dropdown";
 import { Button } from "primereact/button";
 
 import bg__img from "@/assets/img/image.png";
@@ -63,17 +62,30 @@ export const LoginPage = () => {
 
   useEffect(() => {
     if (postFetchData.response?.Code === "000") {
-      console.log("Inicio sesion exitoso");
-      console.log(postFetchData.response);
+      let countRoles = 0;
 
       if (postFetchData.response?.UsuPerPac == 1) {
         console.log("Paciente");
+        countRoles++;
       }
       if (postFetchData.response?.UsuPerAsi == 1) {
         console.log("Profesional");
+        countRoles++;
       }
       if (postFetchData.response?.UsuPerDir == 1) {
         console.log("Directivo");
+        countRoles++;
+      }
+
+      if (countRoles === 1) {
+        navigate("/home");
+        console.log("Tiene un rol");
+      } else if (countRoles > 1) {
+        navigate("/home");
+        console.log("Tiene mas de un rol");
+      } else {
+        navigate("/home");
+        console.log("No tiene ningun rol");
       }
     }
   }, [postFetchData.response]);
@@ -94,7 +106,7 @@ export const LoginPage = () => {
               value={values.User}
               onChange={handleChange}
               className={style.input__line}
-              placeholder="Usuario:"
+              placeholder="usuario"
               type="text"
               onBlur={handleBlur}
             />
@@ -105,7 +117,7 @@ export const LoginPage = () => {
               value={values.Password}
               onChange={handleChange}
               className={style.input__line}
-              placeholder="Contraseña:"
+              placeholder="contraseña"
               onBlur={handleBlur}
             />
 

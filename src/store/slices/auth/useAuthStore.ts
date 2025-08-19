@@ -40,8 +40,8 @@ interface AuthState {
 
 const useAuthStore = create<AuthState>((set) => ({
   token: "token123",
-  kibLevel: "" as typeUi,
-  // kibLevel: "Patient",
+  // kibLevel: "" as typeUi,
+  kibLevel: "Patient",
   //   kibLevel: "Professional",
   // kibLevel: "Administrative",
   usuCod: localStorage.getItem("rt_kib_usucod"),
